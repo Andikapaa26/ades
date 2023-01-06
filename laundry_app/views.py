@@ -5,6 +5,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import *
+from django.views.decorators.csrf import csrf_exempt
+
+@csrf_exempt
 
 @login_required(login_url='login')
 def beranda(request):

@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        
+        <!-- Carousel -->
+        <div class="grid tm-carousel">
+            <figure class="effect-honey">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipP1wiog8YCM5b35RBg4yahdgHq9mkGJGujlrLwe=w768-h768-n-o-v1" alt="Featured Item" width="100%">
+                <figcaption>
+                    <h4><i><span>Aria</span> Laundry</i></h4>
+                </figcaption>
+            </figure>
+            <figure class="effect-honey">
+                <img src="https://3.bp.blogspot.com/-9HO9V5pYVIM/XK3HpaBvj3I/AAAAAAAAB8s/BPZ14YSh3KcLavmY0PhyRqhL15oBkWi7wCLcBGAs/s1600/Laundry%2BKiloan%2BBandung%252C%2BBersih%252C%2BWangi%2BCepat%2Bdan%2BMurah.jpg" alt="Featured Item" width="100%">
+                <figcaption>
+                    <h4><i><span>Emak</span> Laundry</i></h4>
+                </figcaption>
+            </figure>
+            <figure class="effect-honey">
+                <img src="https://th.bing.com/th/id/R.16c42cb39dfd7fa72d426507e84c4b6f?rik=BVMQbI053LfKVA&riu=http%3a%2f%2fwww.orangelaundrysemarang.com%2fwp-content%2fuploads%2f2018%2f08%2fwk-2.jpg&ehk=FOuDs7iaj8CoDNtbp1pK54E%2b004yxP5CYAAbT1dsZeE%3d&risl=&pid=ImgRaw&r=0" alt="Featured Item" width="100%">
+                <figcaption>
+                    <h4><i><span>Orange</span> Laundry</i></h4>
+                </figcaption>
+            </figure>
+            <figure class="effect-honey">
+                <img src="https://i.pinimg.com/originals/bb/2d/50/bb2d508d45d8c8da9c97ea92c4633a6b.jpg" alt="Featured Item" width="100%">
+                <figcaption>
+                    <h4><i><span>Pioner</span> Laundry</i></h4>
+                </figcaption>
+            </figure>
+            <figure class="effect-honey">
+                <img src="https://www.simplyfreshlaundry.com/wp-content/uploads/3011.jpg" alt="Featured Item" width="100%">
+                <figcaption>
+                    <h4><i><span>D'fresh</span> Laundry</i></h4>
+                </figcaption>
+            </figure>
+        </div>
+
+        
+        <!-- Main -->
+        <main>
+            <!-- Welcome section -->
+            <section class="tm-welcome">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="tm-section-header tm-header-floating" id="judul" style="background-color: #b69a79;"><b>Selamat Datang</b> di <i>Website Adsaa Laundry</i></h2>         
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 150px;">
+                    <div class="col">
+                        <div id="map"></div>
+                    </div>
+                </div>
+
+                <table class="table" style="margin-top: 50px;">
+                    <thead class="text-center">
+                      <tr>
+                        <th scope="col">Laundry</th>
+                        <th scope="col">Titik Koordinat</th>
+                        <th scope="col"><a href="/add"><img src="/static/add.png" alt="" width="30px"></a> Add</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        {% for koordinat in koordinats %}
+                        <tr>
+                            <td>{{ koordinat.nama_laundry }}</td>
+                            <td>{{ koordinat.koordinat }}</td>
+                            <td>
+                              <a href="{% url 'update' koordinat.id %}" class="btn btn-sm" style="background-color: #CC9999; color: white;">Update</a>
+                              <a href="{% url 'delete' koordinat.id %}" class="btn btn-sm" style="background-color: #8D6649; color: white;">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="row tm-welcome-row">
+                    <div class="col-12" style="margin-bottom: 50px;">
+                        <h2 class="tm-section-header tm-se ction-header-small" style="background-color: #b69a79;">--- Laundry ---</h2>        
+                    </div>
+                    {% for laundry in laundrys %}
+                    <article class="col-lg-6 tm-media">
+                        <img src="{% static laundry.img %}" alt="" class="img-fluid tm-media-img" />
+                        <div class="tm-media-body">
+                            <a href="#" class="tm-article-link"><h3 class="tm-article-title text-uppercase"><b>{{ laundry.nama_laundry }}</b></h3></a>
+                            <p style="font-size: 10px;">{{ laundry.alamat }}</p>
+                            <p style="font-size: 10px;"><b>No.tlp : {{ laundry.no_tlp }}</b></p>
+                            <br>
+                                <a href="{% url 'update_laundry' laundry.id %}"><img src="/static/update.png" alt="" width="20px"></a>
+                                <a href="{% url 'delete_laundry' laundry.id %}"><img src="/static/delete.png" alt="" width="20px"></a>
+                            <br>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+
+                <img src="/static/pembatas.jpg" alt="" width="100%">
+                <br><br><br><br>
+                
+                <div class="row tm-welcome-row-2">
+                    <div class="col-lg-4 tm-dotted-box-container">
+                        <article class="tm-dotted-box">
+                            <h3 class="tm-article-title">Template Usage</h3>
+                            <p class="tm-article-text">You can feel free to edit and use New Vision template for your commercial websites. Title color is #333</p>
+                            <a class="tm-btn tm-btn-rounded tm-article-link" href="#" style="background-color: #b69a79;">More Details</a>
+                        </article>    
+                    </div>
+                    <div class="col-lg-4 tm-dotted-box-container">
+                        <article class="tm-dotted-box">
+                            <h3 class="tm-article-title">New Vision</h3>
+                            <p class="tm-article-text"><a rel="nofollow" target="_parent" href="https://templatemo.com/tm-542-new-vision">New Vision</a> comes with 4 different HTML pages and provided free of charge by TemplateMo. You can add more pages if you need. Text color is #666</p>
+                        </article>    
+                    </div>
+                    <div class="col-lg-4 tm-dotted-box-container">
+                        <article class="tm-dotted-box">
+                            <h3 class="tm-article-title">Download Sites</h3>
+                            <p class="tm-article-text">Do not re-distribute our template ZIP file on your website. Or contact us first. Button color is #C99</p>
+                            <a class="tm-btn tm-article-link" href="#" style="background-color: #b69a79;">Read More...</a>
+                        </article>
+                    </div>
+                </div>
+
+                <img src="/static/pembatas.jpg" alt="" width="100%">
+
+            </section>
+            
+            
+        </main>
+    </div>
+
+{% endblock %}
